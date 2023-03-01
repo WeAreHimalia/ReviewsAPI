@@ -10,6 +10,7 @@ mongoose.set('strictQuery', false);
 // db.on('error', (error) => console.error(error));
 // db.once('open', () => console.log('Connection to Database Established!'));
 
+
 const meta_aggregated = new mongoose.Schema({
   product: String,
   // page: Number,
@@ -64,13 +65,13 @@ const meta_aggregated = new mongoose.Schema({
     // name: Object,
     // value: []
   }
-});
+}, { collection: 'meta_aggregated' });
 
 const Reviews = new mongoose.model('meta_aggregated', meta_aggregated);
 
-Reviews.find({}).then((reviews) =>  {
-    console.log('review', reviews);
-  })
+// Reviews.find({product: "1"}).then((reviews) =>  {
+//     console.log('review', reviews);
+//   })
 
 
 module.exports.meta_aggregated = Reviews;
