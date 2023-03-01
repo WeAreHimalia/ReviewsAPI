@@ -35,17 +35,18 @@ app.get('/reviews', async (req, res) => {
     // const reviews = await meta_aggregated.findOne({ product: req.query.product_id })
     const reviews = meta_aggregated.find({product: req.query.product_id });
     reviews.then((reviews) =>  {
-      console.log('review', reviews);
-    })
+      console.log('review', reviews[0]);
+   
     // {'product': req.query.product_id }
     // product: req.query.product_id }).select({ "results._id": 0 
-    const reviewData = {
-      product: reviews.product,
-      page: 1,
-      count: reviews.results.length,
-      results: reviews.results
-    };
-    res.status(200).json(reviewData);
+    // const reviewData = {
+    //   product: reviews[0].product,
+    //   page: 1,
+    //   count: reviews[0].results.length,
+    //   results: reviews[0].results
+    // };
+    res.status(200).json(reviews[0]);
+  })
 
   } catch (err) {
      res.status(500).json({ message: err.message });
